@@ -1,2 +1,5 @@
 .vscode
 .venv
+data
+saved_models
+__pycache__

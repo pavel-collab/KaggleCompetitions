@@ -4,6 +4,7 @@ from sklearn.metrics import confusion_matrix, classification_report, f1_score
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import pickle
+from .data_preprocessing import data_preprocessing
 
 def define_random_seed(seed=20):
     seed = seed
@@ -33,19 +34,17 @@ def evaluate_model(model, X_eval, y_eval, device='cpu'):
     return weighted_f1, cm, report, accuracy 
 
 def train_model(model, X_train, y_train, device='cpu'):
-    model.to(device)
-    X_train = X_train.to(device)
-    y_train = y_train.to(device)
-
+    #TODO: map model and train data to device
+    
     model_trained = model.fit(X_train, y_train)
     return model_trained
 
 def import_data(data_path):
     data = pd.read_csv(data_path)
-
-    #TODO: make a data preprocessing
-    X = data.drop('target_column', axis=1) # make a data matrix
-    y = data['target_column'] # extract target label
+    
+    data = data_preprocessing(data)
+    X = data.drop('Survived', axis=1) # make a data matrix
+    y = data['Survived'] # extract target label
 
     # Разделение данных
     X_train, X_eval, y_train, y_eval = train_test_split(
