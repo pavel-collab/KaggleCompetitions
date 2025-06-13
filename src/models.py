@@ -6,9 +6,9 @@ from model.decision_tree import dt
 from model.stacking import voting, stacking
 
 models_list = {
-    "logestic_regression": lr,
-    "ridge_classifier": ridge,
-    "xgboost": xgb,
+    # "logestic_regression": lr,
+    # "ridge_classifier": ridge,  
+    # "xgboost": xgb,
     "svm": svm,
     "decision_tree": dt,
     "random_forest": rf,

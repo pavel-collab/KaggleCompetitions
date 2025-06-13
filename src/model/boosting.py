@@ -7,5 +7,5 @@ xgb = XGBClassifier(
     subsample=0.8,
     random_state=42,
     eval_metric='logloss',
-    use_label_encoder=False
+    # use_label_encoder=False
 )

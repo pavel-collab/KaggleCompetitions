@@ -19,4 +19,4 @@ for model_name, model in models_list.items():
     y_pred = trained_model.predict(X_eval)
     print(f"[DEBUG] {model_name} Accuracy: {accuracy_score(y_eval, y_pred):.4f}\n")
     
-    save_model(train_model, f"./saved_models/{model_name}.pkl")
+    save_model(trained_model, f"./saved_models/{model_name}.pkl")

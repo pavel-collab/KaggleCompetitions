@@ -21,8 +21,7 @@ def get_device():
     return device
 
 def evaluate_model(model, X_eval, y_eval, device='cpu'):
-    model.to(device)
-    model.eval()
+    # model.eval()
 
     y_pred = model.predict(X_eval)
 
@@ -53,6 +52,11 @@ def import_data(data_path):
 
     return X_train, y_train, X_eval, y_eval
 
+def import_test_data(test_data_path):
+    data = pd.read_csv(test_data_path)
+    data = data_preprocessing(data)
+    return data
+
 def save_model(trained_model, save_model_filepath: str):
     with open(save_model_filepath, 'wb') as file:
         pickle.dump(trained_model, file)
@@ -60,4 +64,5 @@ def save_model(trained_model, save_model_filepath: str):
 def extract_model(save_model_filepath):
     with open(save_model_filepath, 'rb') as file:
         loaded_model = pickle.load(file)
+        
     return loaded_model
