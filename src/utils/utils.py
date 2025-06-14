@@ -41,7 +41,7 @@ def train_model(model, X_train, y_train, device='cpu'):
 def import_data(data_path):
     data = pd.read_csv(data_path)
     
-    data = data_preprocessing(data)
+    # data = data_preprocessing(data)
     X = data.drop('Survived', axis=1) # make a data matrix
     y = data['Survived'] # extract target label
 

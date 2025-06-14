@@ -2,8 +2,17 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 from utils.utils import (import_data, train_model, save_model)
 from models import (models_list, linear_models)
+import argparse
+from pathlib import Path
 
-X_train, y_train, X_eval, y_eval = import_data('./data/train.csv')
+parser = argparse.ArgumentParser()
+parser.add_argument('-d', '--data', type=str, default='./data/train.csv', help='path to file with train data')
+args = parser.parse_args()
+
+train_data_path = Path(args.data)
+assert(train_data_path.exists())
+
+X_train, y_train, X_eval, y_eval = import_data(train_data_path.absolute())
 
 for model_name, model in models_list.items():
     print(f"[DEBUG] start to train model {model_name}")
